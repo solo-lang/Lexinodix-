@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexinodix — Institutional Infrastructure Portfolio</title>
+  
+  <!-- 21. Full SEO & Structured Data -->
+  <meta name="description" content="Lexinodix builds foundational infrastructure for the AI era. Calm, precise, and engineered for enterprise scale, security, and cognitive integrity.">
+  <meta name="keywords" content="Lexinodix, AI Infrastructure, Enterprise Security, Cognitive Architecture, Sentinel, Flow, Zero-Trust, Policy-as-Code">
+  <meta name="author" content="Abdullah Omran, CEO Lexinodix Technologies">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lexinodix.com/">
+  <meta property="og:title" content="Lexinodix — Where Infrastructure Meets Intelligence">
+  <meta property="og:description" content="Foundational systems for AI-native enterprises. Security, observability, and cognitive architecture engineered for scale.">
+  <meta property="og:image" content="https://lexinodix.com/og-preview.jpg">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:locale:alternate" content="en_US">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lexinodix — Institutional Infrastructure">
+  <meta name="twitter:description" content="Calm, precise, and engineered for the AI era.">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Lexinodix Technologies",
+    "url": "https://lexinodix.com",
+    "logo": "https://lexinodix.com/logo.png",
+    "founder": { "@type": "Person", "name": "Abdullah Omran", "jobTitle": "Chief Executive Officer" },
+    "contactPoint": { "@type": "ContactPoint", "contactType": "Enterprise Sales", "email": "enterprise@lexinodix.com" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       LEXINODIX — INSTITUTIONAL PORTFOLIO v2.1
+       Calm • Heavy • Bilingual • Enterprise-Ready
+       ========================================= */
+    :root {      --bg: #F5F1EC; --bg-surface: #FFFFFF; --text: #1D2428; --text-muted: #5A646B;
+      --accent: #072A40; --accent-soft: #BFACA4; --border: rgba(29, 36, 40, 0.08);
+      --font-ar: 'Noto Kufi Arabic', system-ui, sans-serif;
+      --font-en: 'Sora', system-ui, sans-serif; --font-body: 'Outfit', system-ui, sans-serif;
+      --space-2: 8px; --space-4: 16px; --space-6: 24px; --space-8: 32px;
+      --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+      --container: 1050px; --radius: 10px; --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-ar); background: var(--bg); color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    [dir="ltr"] body { font-family: var(--font-body); }
+    
+    h1, h2, h3, h4 { font-family: var(--font-en); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; }
+    [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { font-family: var(--font-ar); font-weight: 600; }
+    .en-text { font-family: var(--font-en); direction: ltr; display: inline-block; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--space-6); }
+    
+    /* 2. Scroll Progress Bar */
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); width: 0%; z-index: 999; transition: width 0.1s linear; }
+    
+    /* Language Toggle */
+    .lang-toggle { position: fixed; bottom: var(--space-6); left: var(--space-6); z-index: 100; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 24px; padding: 6px; display: flex; gap: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    [dir="rtl"] .lang-toggle { left: auto; right: var(--space-6); }
+    .lang-btn { padding: 6px 12px; border-radius: 18px; font-size: 0.75rem; font-weight: 600; border: none; background: transparent; color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+    .lang-btn.active { background: var(--accent); color: white; }
+    
+    /* Content Visibility Logic */
+    [data-lang="ar"] .en-content { display: none; } [data-lang="en"] .ar-content { display: none; }
+    [data-lang="en"] .en-content, [data-lang="ar"] .ar-content { display: block; animation: fadeIn 0.4s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Header */
+    header { padding: var(--space-6) 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-en); font-weight: 700; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+    .logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-soft)); border-radius: 6px; display: grid; place-items: center; color: white; font-size: 0.7rem; font-weight: 700; }
+    
+    /* Hero */
+    .hero { padding: var(--space-16) 0 var(--space-12); text-align: center; position: relative; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(7,42,64,0.04) 0%, transparent 60%); pointer-events: none; }
+    .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); margin-bottom: var(--space-4); color: var(--accent); }
+    .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+    
+    /* 14. System Status Bar */
+    .status-bar { display: flex; justify-content: center; align-items: center; gap: 8px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; max-width: fit-content; margin: 0 auto var(--space-12); font-size: 0.85rem; color: var(--text-muted); }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px rgba(34,197,94,0.6); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    /* Sections */
+    section { padding: var(--space-16) 0; }
+    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-soft); font-weight: 600; margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px; }
+    .section-label::before { content: ''; width: 16px; height: 2px; background: var(--accent-soft); }
+    .section-header { margin-bottom: var(--space-10); }
+    .section-header h2 { font-size: 1.8rem; margin-bottom: var(--space-2); }
+    .section-header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; }
+
+    /* 5. Cards with Micro-interactions */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+    @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+    .card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-8); transition: all var(--transition); position: relative; overflow: hidden; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-soft)); opacity: 0; transition: opacity var(--transition); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(7,42,64,0.06); border-color: var(--accent-soft); }
+    .card:hover::before { opacity: 1; }
+    .card h3 { font-size: 1.2rem; margin-bottom: var(--space-3); display: flex; justify-content: space-between; align-items: baseline; }
+    .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: var(--space-4); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag-sm { font-size: 0.65rem; color: var(--accent); background: rgba(7,42,64,0.04); padding: 3px 8px; border-radius: 4px; font-family: var(--font-en); }
+
+    /* 3. Interactive Architecture */
+    .arch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-top: var(--space-8); }
+    @media (max-width: 900px) { .arch-grid { grid-template-columns: repeat(2, 1fr); } }
+    .arch-item { padding: var(--space-6); background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; position: relative; cursor: pointer; transition: var(--transition); }
+    .arch-item:hover { border-color: var(--accent-soft); transform: translateY(-3px); }
+    .arch-item h4 { font-size: 1rem; margin-bottom: 6px; }
+    .arch-item p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+    .arch-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--accent); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; width: 180px; text-align: center; opacity: 0; pointer-events: none; transition: var(--transition); z-index: 10; }
+    [dir="rtl"] .arch-tooltip { transform: translateX(50%) translateY(10px); }
+    .arch-item:hover .arch-tooltip { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+    [dir="rtl"] .arch-item:hover .arch-tooltip { transform: translateX(50%) translateY(-8px); }
+
+    /* 15. Technical Specs */
+    .specs-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6);
+      justify-content: center; align-items: stretch; margin: 0 auto;
+    }
+    .spec-item {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: var(--space-6) var(--space-4); 
+      background: var(--bg-surface); border: 1px solid var(--border); 
+      border-radius: var(--radius); height: 100%; min-height: 140px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .spec-item:hover { border-color: var(--accent-soft); transform: translateY(-2px); }
+    .spec-num { font-family: var(--font-en); font-size: 1.8rem; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .spec-label { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; }
+    @media (max-width: 900px) { .specs-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* 26. Multi-Region Nodes - IMPROVED */    .geo-container {
+      background: var(--bg-surface); border: 1px solid var(--border); 
+      border-radius: var(--radius); padding: var(--space-6); 
+      position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--space-6);
+    }
+    .geo-header {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      padding-bottom: var(--space-4); border-bottom: 1px solid var(--border);
+    }
+    .geo-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .geo-status { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); }
+    .geo-status .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+    
+    .geo-map {
+      position: relative; height: 300px; width: 100%;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-surface) 100%);
+      border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
+      margin: 0;
+    }
+    .continent { position: absolute; background: rgba(7, 42, 64, 0.06); border: 1px solid rgba(7, 42, 64, 0.1); border-radius: 4px; pointer-events: none; }
+    .continent.na { top: 40px; left: 80px; width: 140px; height: 100px; }
+    .continent.eu { top: 35px; left: 280px; width: 80px; height: 70px; }
+    .continent.asia { top: 50px; left: 420px; width: 160px; height: 110px; }
+    .continent.sa { top: 160px; left: 120px; width: 70px; height: 90px; }
+    .continent.af { top: 120px; left: 300px; width: 70px; height: 90px; }
+
+    .geo-node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: transform 0.3s; z-index: 2; }
+    .geo-node:hover { transform: scale(1.1); }
+    .node-dot { width: 10px; height: 10px; background: rgba(7, 42, 64, 0.3); border-radius: 50%; border: 2px solid var(--bg-surface); transition: all 0.3s; }
+    .geo-node.active .node-dot { background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: nodePulse 2s infinite; }
+    .node-label { font-size: 0.65rem; font-weight: 500; color: var(--text); white-space: nowrap; background: var(--bg-surface); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); font-family: var(--font-en); }
+    .node-latency { font-size: 0.6rem; color: var(--text-muted); margin-top: 2px; font-family: var(--font-en); }
+    .geo-line { position: absolute; height: 1px; background: linear-gradient(90deg, transparent, rgba(7,42,64,0.15), transparent); transform-origin: left center; pointer-events: none; z-index: 1; }
+
+    .geo-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+      padding-top: var(--space-4); border-top: 1px solid var(--border);
+    }
+    .stat-box { text-align: center; padding: var(--space-3); background: var(--bg); border-radius: 6px; border: 1px solid var(--border); }
+    .stat-value { font-family: var(--font-en); font-size: 1.3rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .stat-label { font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
+    @media (max-width: 768px) { 
+      .geo-stats { grid-template-columns: repeat(2, 1fr); } 
+      .continent { display: none; } 
+      .geo-map { height: 220px; }
+    }
+
+    /* 16. Partners */
+    .partners { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-8); opacity: 0.5; filter: grayscale(1); transition: var(--transition); }
+    .partners:hover { opacity: 1; filter: grayscale(0); }    .partner-logo { font-family: var(--font-en); font-size: 1.05rem; font-weight: 600; color: var(--text-muted); padding: 8px 16px; border: 1px dashed var(--border); border-radius: 6px; }
+
+    /* 20. Behind the Scenes - FIXED */
+    .dev-stats { 
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); 
+      margin-top: var(--space-8); align-items: stretch; 
+    }
+    .dev-card {
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: var(--space-6); background: var(--bg-surface); border: 1px solid var(--border);
+      border-radius: var(--radius); height: 100%; min-height: 190px;
+      transition: border-color var(--transition);
+    }
+    .dev-card:hover { border-color: var(--accent-soft); }
+    .dev-card h4 { font-size: 1rem; margin-bottom: var(--space-2); color: var(--accent); }
+    .dev-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+    @media (max-width: 768px) { .dev-stats { grid-template-columns: 1fr; } }
+
+    /* Founder */
+    .founder-wrap { display: flex; align-items: center; gap: var(--space-8); background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-8); }
+    @media (max-width: 768px) { .founder-wrap { flex-direction: column; text-align: center; } }
+    .founder-img { width: 130px; height: 130px; border-radius: 18px; border: 3px solid var(--bg); background: var(--bg); display: grid; place-items: center; overflow: hidden; flex-shrink: 0; box-shadow: 0 6px 20px rgba(7,42,64,0.08); }
+    .founder-img img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+    .founder-img .placeholder { font-size: 1.8rem; color: var(--text-muted); opacity: 0.3; }
+    .founder-text h3 { font-size: 1.4rem; margin-bottom: 4px; }
+    .founder-text .role { font-size: 0.9rem; color: var(--accent-soft); font-weight: 500; margin-bottom: var(--space-4); font-family: var(--font-en); }
+    .founder-text blockquote { font-size: 1.05rem; line-height: 1.7; border-right: 3px solid var(--accent-soft); padding-right: var(--space-4); margin: 0 0 var(--space-4) 0; color: var(--text); }
+    [dir="ltr"] .founder-text blockquote { border-right: none; border-left: 3px solid var(--accent-soft); padding-right: 0; padding-left: var(--space-4); }
+    .founder-text p { font-size: 0.95rem; color: var(--text-muted); }
+
+    /* Roadmap */
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-8); }
+    @media (max-width: 800px) { .timeline { grid-template-columns: 1fr; } }
+    .phase { padding: var(--space-6); background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); border-top: 3px solid var(--accent-soft); }
+    .phase.active { border-top-color: var(--accent); background: rgba(7,42,64,0.02); }
+    .phase h4 { font-size: 1rem; margin-bottom: var(--space-3); display: flex; justify-content: space-between; }
+    .phase p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: var(--space-3); }
+    .phase ul { list-style: none; padding: 0; }
+    .phase li { font-size: 0.85rem; margin-bottom: 6px; padding-right: 12px; position: relative; color: var(--text); }
+    [dir="ltr"] .phase li { padding-right: 0; padding-left: 12px; }
+    .phase li::before { content: '•'; color: var(--accent-soft); position: absolute; right: 0; font-weight: 700; }
+    [dir="ltr"] .phase li::before { right: auto; left: 0; }
+
+    /* Footer & 29. Dynamic Version */
+    .closing { padding: var(--space-24) 0 var(--space-12); text-align: center; border-top: 1px solid var(--border); }
+    .closing h2 { font-size: 1.6rem; color: var(--accent); margin-bottom: var(--space-4); }
+    .closing p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+    footer { padding: var(--space-6) 0; text-align: center; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-en); }
+    .footer-meta { display: flex; justify-content: center; gap: var(--space-4); margin-top: 8px; flex-wrap: wrap; }
+    .footer-tag { background: var(--bg-surface); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border); font-size: 0.7rem; }
+    /* Print Optimization */
+    @media print {
+      body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .scroll-progress, .lang-toggle { display: none; }
+      .hero { padding: var(--space-10) 0; }
+      section { padding: var(--space-10) 0; page-break-inside: avoid; }
+      .card, .arch-item, .phase, .founder-wrap, .dev-card, .spec-item, .geo-container { break-inside: avoid; }
+      [data-lang="ar"] .en-content, [data-lang="en"] .ar-content { display: block !important; opacity: 0.6; font-size: 0.9em; margin-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2. Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Header -->
+  <div class="container">
+    <header>
+      <div class="logo"><div class="logo-icon">LX</div> Lexinodix</div>
+      <span class="en-text" style="font-size:0.75rem; color:var(--text-muted); border:1px solid var(--border); padding:4px 10px; border-radius:20px;">Institutional Preview • 2026</span>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="ar-content">حيث تلتقي البنية<br>بالذكاء المؤسسي</h1>
+      <h1 class="en-content">Where Infrastructure<br>Meets Intelligence</h1>
+      <p class="ar-content">نبني طبقة أساسية هادئة ودقيقة لعصر الذكاء الاصطناعي. لا نضيف ضوضاء.. نوفر وضوحاً مؤسسياً، أمناً مشفّراً، وذكاءً يفهم السياق قبل أن يتكلم.</p>
+      <p class="en-content">We build a calm, precise foundational layer for the AI era. No noise. Institutional clarity, encrypted security, and intelligence that understands context before it speaks.</p>
+    </section>
+
+    <!-- 14. System Status -->
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <span class="ar-content">جميع الأنظمة تعمل بكفاءة</span>
+      <span class="en-content">All Systems Operational</span>
+      <span style="color:var(--text-muted); opacity:0.5;">•</span>
+      <span class="en-text" style="font-family:var(--font-en); font-size:0.8rem;">v2.4.1-stable</span>
+    </div>
+
+    <!-- Products -->
+    <section class="products">
+      <div class="section-header ar-content">
+        <div class="section-label">المنصة الأساسية</div>
+        <h2>نظامان.. مهمة واحدة</h2>
+        <p>كل مكون صُمم ليقلل التشويش، يفرض الأمان، ويعزز الإنتاجية المعرفية.</p>
+      </div>
+      <div class="section-header en-content">
+        <div class="section-label">Core Infrastructure</div>        <h2>Two Systems. One Mission.</h2>
+        <p>Every component is engineered to reduce noise, enforce security, and amplify cognitive output.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Lexinodix Flow <span class="en-text" style="font-size:0.8rem; color:var(--text-muted);">Workspace Engine</span></h3>
+          <p class="ar-content">مساحة عمل ذكية تقرأ ملفاتك، تربط ملاحظاتك، وتنظم معرفتك تلقائياً. واجهة صُممت للتركيز العميق، لا للتشتت.</p>
+          <p class="en-content">An intelligent workspace that reads your files, links your notes, and organizes knowledge automatically. Built for deep focus, not distraction.</p>
+          <div class="tags"><span class="tag-sm">File Intelligence</span><span class="tag-sm">Context Linking</span><span class="tag-sm">Zero-Noise UI</span></div>
+        </div>
+        <div class="card">
+          <h3>Lexinodix Sentinel <span class="en-text" style="font-size:0.8rem; color:var(--text-muted);">AI Security Layer</span></h3>
+          <p class="ar-content">بنية أمنية للذكاء الاصطناعي. مراقبة فورية، إنفاذ سياسات ديناميكي، ورسم بياني للتهديدات يحمي بياناتك قبل أن تتسرب.</p>
+          <p class="en-content">AI security infrastructure. Real-time monitoring, dynamic policy enforcement, and a threat graph that protects your data before it leaks.</p>
+          <div class="tags"><span class="tag-sm">eBPF Telemetry</span><span class="tag-sm">Policy-as-Code</span><span class="tag-sm">Threat Graph</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Interactive Architecture -->
+    <section class="architecture">
+      <div class="section-header ar-content" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">البنية التقنية</div>
+        <h2>كيف يفكر النظام؟</h2>
+        <p style="margin:0 auto;">مرّر المؤشر على كل طبقة لرؤية التفاصيل التقنية.</p>
+      </div>
+      <div class="section-header en-content" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">System Architecture</div>
+        <h2>How It Thinks</h2>
+        <p style="margin:0 auto;">Hover each layer to reveal technical details.</p>
+      </div>
+      <div class="arch-grid">
+        <div class="arch-item">
+          <div class="arch-tooltip">eBPF Probes, OTel Collectors, AI API Proxy, Low-impact Log Shippers</div>
+          <h4 class="ar-content">الاستقبال</h4><h4 class="en-content">Data Ingest</h4>
+          <p class="en-text">Layer 01</p>
+        </div>
+        <div class="arch-item">
+          <div class="arch-tooltip">Semantic Indexing, Vector Embeddings, Context Window Mapping, RAG Pipeline</div>
+          <h4 class="ar-content">محرك السياق</h4><h4 class="en-content">Context Engine</h4>
+          <p class="en-text">Layer 02</p>
+        </div>
+        <div class="arch-item">
+          <div class="arch-tooltip">Secure Inference Sandbox, Agent Orchestration, Policy Evaluation (<10ms)</div>
+          <h4 class="ar-content">بيئة التنفيذ</h4><h4 class="en-content">AI Runtime</h4>
+          <p class="en-text">Layer 03</p>
+        </div>
+        <div class="arch-item">
+          <div class="arch-tooltip">Distributed Tracing, Metrics Aggregation, Audit Trails, Anomaly Detection</div>
+          <h4 class="ar-content">المراقبة</h4><h4 class="en-content">Observability</h4>          <p class="en-text">Layer 04</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. Technical Specs -->
+    <section class="specs">
+      <div class="section-header ar-content"><div class="section-label">المواصفات التقنية</div><h2>أرقام تعكس الدقة</h2></div>
+      <div class="section-header en-content"><div class="section-label">Technical Specifications</div><h2>Metrics That Matter</h2></div>
+      <div class="specs-grid">
+        <div class="spec-item"><div class="spec-num"><10ms</div><div class="spec-label ar-content">تقييم السياسات</div><div class="spec-label en-text">Policy Evaluation</div></div>
+        <div class="spec-item"><div class="spec-num">99.99%</div><div class="spec-label ar-content">هدف وقت التشغيل</div><div class="spec-label en-text">Target Uptime SLA</div></div>
+        <div class="spec-item"><div class="spec-num">AES-256</div><div class="spec-label ar-content">تشفير البيانات</div><div class="spec-label en-text">Encryption Standard</div></div>
+        <div class="spec-item"><div class="spec-num"><2%</div><div class="spec-label ar-content">تأثير الأداء</div><div class="spec-label en-text">Performance Overhead</div></div>
+      </div>
+    </section>
+
+    <!-- 26. Multi-Region Nodes - IMPROVED -->
+    <section class="geo-distribution">
+      <div class="section-header ar-content" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">البنية العالمية</div>
+        <h2>توزيع جغرافي آمن</h2>
+        <p style="margin:0 auto;">نقاط اتصال موزعة عبر 5 مناطق عالمية لضمان التوافر العالي وعزل البيانات.</p>
+      </div>
+      <div class="section-header en-content" style="text-align:center;">
+        <div class="section-label" style="justify-content:center;">Global Infrastructure</div>
+        <h2>Secure Geographic Distribution</h2>
+        <p style="margin:0 auto;">Multi-region nodes ensuring high availability, data residency compliance, and fault tolerance.</p>
+      </div>
+      <div class="geo-container">
+        <div class="geo-header">
+          <span class="geo-title ar-content">مناطق التشغيل النشطة</span>
+          <span class="geo-title en-text">Active Regions</span>
+          <div class="geo-status"><div class="dot"></div><span class="ar-content">جميع الأنظمة نشطة</span><span class="en-text">All Systems Operational</span></div>
+        </div>
+        <div class="geo-map">
+          <div class="continent na"></div><div class="continent eu"></div><div class="continent asia"></div><div class="continent sa"></div><div class="continent af"></div>
+          <div class="geo-node active" style="top: 60px; left: 120px;"><div class="node-dot"></div><div class="node-label">US-East</div><div class="node-latency">12ms</div></div>
+          <div class="geo-node active" style="top: 55px; left: 310px;"><div class="node-dot"></div><div class="node-label">EU-West</div><div class="node-latency">18ms</div></div>
+          <div class="geo-node active" style="top: 75px; left: 480px;"><div class="node-dot"></div><div class="node-label">Asia-Pacific</div><div class="node-latency">24ms</div></div>
+          <div class="geo-node" style="top: 180px; left: 140px;"><div class="node-dot"></div><div class="node-label">SA-East</div><div class="node-latency">32ms</div></div>
+          <div class="geo-node" style="top: 140px; left: 320px;"><div class="node-dot"></div><div class="node-label">Middle East</div><div class="node-latency">28ms</div></div>
+          <div class="geo-line" style="top: 65px; left: 130px; width: 175px; transform: rotate(8deg);"></div>
+          <div class="geo-line" style="top: 62px; left: 320px; width: 155px; transform: rotate(-5deg);"></div>
+        </div>
+        <div class="geo-stats">
+          <div class="stat-box"><div class="stat-value">5</div><div class="stat-label ar-content">مناطق نشطة</div><div class="stat-label en-text">Active Regions</div></div>
+          <div class="stat-box"><div class="stat-value">99.99%</div><div class="stat-label ar-content">التوافر</div><div class="stat-label en-text">Uptime SLA</div></div>
+          <div class="stat-box"><div class="stat-value"><50ms</div><div class="stat-label ar-content">زمن الوصول</div><div class="stat-label en-text">Avg Latency</div></div>
+          <div class="stat-box"><div class="stat-value">AES-256</div><div class="stat-label ar-content">التشفير</div><div class="stat-label en-text">Encryption</div></div>        </div>
+      </div>
+    </section>
+
+    <!-- 16. Partners -->
+    <section class="partners-section">
+      <div class="section-header ar-content" style="text-align:center;"><div class="section-label" style="justify-content:center;">شركاء البنية</div><h2>تكامل مؤسسي</h2></div>
+      <div class="section-header en-content" style="text-align:center;"><div class="section-label" style="justify-content:center;">Infrastructure Partners</div><h2>Enterprise Integration</h2></div>
+      <div class="partners">
+        <span class="partner-logo">AWS Partner</span><span class="partner-logo">Azure Certified</span><span class="partner-logo">GCP Compatible</span><span class="partner-logo">Kubernetes Native</span><span class="partner-logo">OpenTelemetry</span>
+      </div>
+    </section>
+
+    <!-- 20. Behind the Scenes - FIXED -->
+    <section class="behind-scenes">
+      <div class="section-header ar-content"><div class="section-label">خلف الكواليس</div><h2>شفافية التطوير</h2><p>إحصائيات حية تعكس وتيرة البناء والنضج التقني.</p></div>
+      <div class="section-header en-content"><div class="section-label">Behind the Scenes</div><h2>Development Transparency</h2><p>Live metrics reflecting build velocity and technical maturity.</p></div>
+      <div class="dev-stats">
+        <div class="dev-card"><h4 class="ar-content">دورة التطوير</h4><h4 class="en-content">Release Cycle</h4><p class="ar-content">نشر كل أسبوعين مع اختبارات أمنية تلقائية. متوسط وقت الإصلاح <4 ساعات.</p><p class="en-content">Bi-weekly deployments with automated security testing. Mean time to resolution <4h.</p></div>
+        <div class="dev-card"><h4 class="ar-content">المساهمات المفتوحة</h4><h4 class="en-content">Open Contributions</h4><p class="ar-content">مساهمات نشطة في eBPF، OpenTelemetry، ومكتبات الأمان المؤسسي. مجتمع تقني نامٍ.</p><p class="en-content">Active contributions to eBPF, OpenTelemetry, and enterprise security libs. Growing tech community.</p></div>
+        <div class="dev-card"><h4 class="ar-content">جودة الكود</h4><h4 class="en-content">Code Integrity</h4><p class="ar-content">تغطية اختبارات >85%. مراجعة أقران إلزامية. تحليل ثابت يومي بدون ثغرات حرجة.</p><p class="en-content">Test coverage >85%. Mandatory peer review. Daily static analysis. Zero critical vulnerabilities.</p></div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="founder">
+      <div class="founder-wrap">
+        <div class="founder-img">
+          
+          <img src="photo.png" alt="Abdullah Omran"> 
+        </div>
+        <div class="founder-text">
+          <h3 class="ar-content">عبدالله عمران</h3><h3 class="en-content">Abdullah Omran</h3>
+          <div class="role">Founder & Chief Executive Officer</div>
+          <blockquote class="ar-content">"بنيت ليكسينوديكس لأن السوق كان مليئاً بأدوات 'تغليف' الذكاء الاصطناعي دون فهم حقيقي للسياق أو الأمان. رؤيتي واضحة: بناء بنية تحتية مؤسسية هادئة، آمنة، وقابلة للتوسع عالمياً."</blockquote>
+          <blockquote class="en-content">"I built Lexinodix because the market was full of AI wrappers lacking real context or security. My vision is clear: build calm, secure, globally scalable institutional infrastructure."</blockquote>
+          <p class="ar-content">قيادة هندسية متكاملة • أنظمة موزعة • أمن الذكاء الاصطناعي • هندسة المعرفة</p>
+          <p class="en-text">Full-Stack Engineering Lead • Distributed Systems • AI Security • Knowledge Architecture</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="roadmap">
+      <div class="section-header ar-content" style="text-align:center;"><div class="section-label" style="justify-content:center;">خارطة الطريق</div><h2>إلى أين نتجه؟</h2><p>بناء سريع.. تسليم حقيقي.. توسع منهجي.</p></div>
+      <div class="section-header en-content" style="text-align:center;"><div class="section-label" style="justify-content:center;">Path Forward</div><h2>Where We're Going</h2><p>Built fast. Shipped real. Expanding systematically.</p></div>
+      <div class="timeline">
+        <div class="phase active">
+          <h4 class="ar-content">المرحلة الأولى <span class="en-text" style="font-size:0.8rem; color:var(--text-muted);">Core</span></h4>
+          <h4 class="en-content">Phase 01 <span class="ar-text" style="font-size:0.8rem; color:var(--text-muted);">الأساس</span></h4>          <p class="ar-content">التأسيس والذكاء</p><p class="en-content">Foundation & Intelligence</p>
+          <ul class="ar-content"><li>قراءة الملفات وربط السياق</li><li>تنظيم مساحات العمل</li><li>واجهة خالية من الضوضاء</li></ul>
+          <ul class="en-content"><li>File reading & context linking</li><li>Workspace organization</li><li>Zero-noise interface</li></ul>
+        </div>
+        <div class="phase">
+          <h4 class="ar-content">المرحلة الثانية <span class="en-text" style="font-size:0.8rem; color:var(--text-muted);">Security</span></h4>
+          <h4 class="en-content">Phase 02 <span class="ar-text" style="font-size:0.8rem; color:var(--text-muted);">الأمان</span></h4>
+          <p class="ar-content">طبقة الأمان والامتثال</p><p class="en-content">Security & Compliance Layer</p>
+          <ul class="ar-content"><li>إنفاذ السياسات الفوري</li><li>محرك كشف التهديدات</li><li>جاهزية SOC 2 / ISO</li></ul>
+          <ul class="en-content"><li>Real-time policy enforcement</li><li>Threat detection engine</li><li>SOC 2 / ISO alignment</li></ul>
+        </div>
+        <div class="phase">
+          <h4 class="ar-content">المرحلة الثالثة <span class="en-text" style="font-size:0.8rem; color:var(--text-muted);">Scale</span></h4>
+          <h4 class="en-content">Phase 03 <span class="ar-text" style="font-size:0.8rem; color:var(--text-muted);">التوسع</span></h4>
+          <p class="ar-content">التوسع العالمي والمعرفي</p><p class="en-content">Global & Cognitive Scale</p>
+          <ul class="ar-content"><li>مزامنة متعددة المناطق</li><li>رسم المعرفة المعرفي</li><li>الفيدرالية المؤسسية</li></ul>
+          <ul class="en-content"><li>Multi-region sync</li><li>Cognitive knowledge graph</li><li>Enterprise federation</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing">
+      <h2 class="ar-content">هادئ جداً.. لكن ثقيل جداً</h2>
+      <h2 class="en-content">Calm. Precise. Built to Last.</h2>
+      <p class="ar-content">ليكسينوديكس مُهندسة للفرق التي ترفض المساومة على الوضوح، الأمان، أو الأداء.</p>
+      <p class="en-content">Engineered for teams that refuse to compromise on clarity, security, or performance.</p>
+    </section>
+  </div>
+
+  <!-- 29. Dynamic Footer -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Lexinodix Technologies. All infrastructure reserved.</p>
+      <div class="footer-meta">
+        <span class="footer-tag" id="version">v2.4.1-stable</span>
+        <span class="footer-tag" id="buildDate"></span>
+        <span class="footer-tag ar-content">مبني بهدوء</span>
+        <span class="footer-tag en-content">Built with restraint</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-target="ar">عربي</button>
+    <button class="lang-btn" data-target="en">English</button>
+  </div>
+
+  <script>    // 1. Language Toggle
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        langBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.getAttribute('data-target');
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        document.documentElement.setAttribute('lang', lang);
+      });
+    });
+
+    // 2. Scroll Progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      document.getElementById('scrollProgress').style.width = progress + '%';
+    });
+
+    // 29. Dynamic Footer Data
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const now = new Date();
+    document.getElementById('buildDate').textContent = `Built: ${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  </script>
+</body>
+</html>
