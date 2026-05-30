@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexinodix Labs — Research & AI Architecture</title>
+<meta name="description" content="Lexinodix Labs is the research and deep engineering division of Lexinodix. We develop proprietary AI architectures, Arabic NLP systems, and RAG pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--dark:#011C26;--blue:#072A40;--gray:#4F5459;
+--beige:#BFACA4;--cream:#F5F1EE;--cream2:#FAF8F6;
+--border:rgba(1,28,38,0.07);--border2:rgba(191,172,164,0.2);
+--fh:'Sora',sans-serif;--fb:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--gray);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(191,172,164,0.2);color:var(--dark)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--beige);border-radius:99px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;transition:all 0.3s}
+nav.scrolled{background:rgba(245,241,238,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--fh);font-weight:700;font-size:0.95rem;letter-spacing:0.02em;color:var(--dark)}
+.nav-logo-mark{width:30px;height:30px;border-radius:9px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:0.9rem;font-weight:800;color:#fff}
+.nav-links{display:none;align-items:center;gap:2px}
+.nav-links a{padding:6px 12px;font-size:0.82rem;font-weight:500;color:var(--gray);border-radius:8px;transition:all 0.15s}
+.nav-links a:hover{color:var(--dark);background:rgba(191,172,164,0.1)}
+.nav-links a.active{color:var(--dark);font-weight:600}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{display:none;padding:8px 18px;background:var(--dark);color:#fff;border-radius:8px;font-size:0.8rem;font-weight:500;font-family:var(--fb);transition:all 0.2s}
+.nav-cta:hover{background:var(--blue);transform:translateY(-1px)}
+.ham{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:20px;height:1.5px;background:var(--dark);border-radius:2px;transition:all 0.25s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,3.5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-3.5px)}
+.mob-nav{position:fixed;top:64px;inset-x:0;bottom:0;background:var(--cream);z-index:99;padding:40px 32px;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);visibility:hidden;pointer-events:none}
+.mob-nav.open{transform:translateX(0);visibility:visible;pointer-events:all}
+.mob-nav a{display:block;padding:16px 0;font-size:1rem;font-weight:500;color:var(--gray);border-bottom:1px solid var(--border);transition:color 0.15s}
+.mob-nav a:hover{color:var(--dark)}
+.mob-cta{margin-top:32px;display:block;padding:14px;background:var(--dark);color:#fff;text-align:center;border-radius:10px;font-size:0.9rem;font-weight:500}
+@media(min-width:900px){.nav-links,.nav-cta{display:flex}.ham{display:none}}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+section{padding:100px 0}
+.sec-label{display:inline-flex;align-items:center;gap:7px;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);font-family:var(--fh);margin-bottom:24px}
+.sec-label-dot{width:4px;height:4px;border-radius:50%;background:var(--beige)}
+.sec-title{font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-0.5px;color:var(--dark);margin-bottom:16px}
+.sec-sub{font-size:1rem;color:var(--gray);line-height:1.8;max-width:520px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1),transform 0.65s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(191,172,164,0.1) 1px,transparent 0);background-size:44px 44px;mask-image:radial-gradient(ellipse at 30% 50%,rgba(0,0,0,0.4) 0%,transparent 65%);-webkit-mask-image:radial-gradient(ellipse at 30% 50%,rgba(0,0,0,0.4) 0%,transparent 65%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.hero-division{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--beige);font-family:var(--fh);margin-bottom:20px}
+.hero-h1{font-family:var(--fh);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-1px;color:var(--dark);margin-bottom:24px}
+.hero-h1 em{font-style:normal;background:linear-gradient(135deg,var(--beige),#A8958D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;color:var(--gray);line-height:1.8;margin-bottom:40px;max-width:460px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--dark);color:#fff;border-radius:10px;font-size:0.875rem;font-weight:500;font-family:var(--fb);transition:all 0.25s;border:none;cursor:pointer}
+.btn-p:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,28,38,0.2)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:transparent;color:var(--dark);border-radius:10px;font-size:0.875rem;font-weight:500;font-family:var(--fb);border:1px solid var(--border);transition:all 0.25s;cursor:pointer}
+.btn-s:hover{border-color:var(--beige);transform:translateY(-2px)}
+.hero-visual{position:relative}
+.labs-diagram{width:100%;aspect-ratio:1;max-width:440px;margin-left:auto;position:relative}
+.labs-diagram svg{width:100%;height:100%}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}.hero-visual{display:none}}
+
+/* FOCUS AREAS */
+.focus{background:var(--cream2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-top:56px}
+.focus-card{padding:36px 32px;background:var(--cream2);transition:all 0.3s;position:relative}
+.focus-card:hover{background:#fff}
+.focus-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--beige),transparent);opacity:0;transition:opacity 0.3s}
+.focus-card:hover::before{opacity:1}
+.focus-num{font-family:var(--fh);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;color:var(--beige);margin-bottom:16px}
+.focus-icon{width:40px;height:40px;border-radius:10px;background:rgba(191,172,164,0.1);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--beige)}
+.focus-icon svg{width:18px;height:18px}
+.focus-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:10px;letter-spacing:-0.2px}
+.focus-desc{font-size:0.83rem;color:var(--gray);line-height:1.75}
+
+/* PIPELINE */
+.pipeline{background:var(--cream)}
+.pipeline-visual{margin-top:64px;position:relative}
+.pipe-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;position:relative}
+.pipe-steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--beige),var(--border2),transparent);z-index:0}
+.pipe-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.pipe-step-circle{width:64px;height:64px;border-radius:50%;background:var(--cream2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transition:all 0.3s;color:var(--gray)}
+.pipe-step-circle svg{width:22px;height:22px}
+.pipe-step:hover .pipe-step-circle{background:var(--dark);border-color:var(--dark);color:#fff;transform:scale(1.1)}
+.pipe-step-name{font-family:var(--fh);font-size:0.82rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.pipe-step-desc{font-size:0.75rem;color:var(--gray);line-height:1.6}
+.pipe-arrow{position:absolute;top:32px;right:-12px;transform:translateY(-50%);color:var(--border2);font-size:1rem;z-index:2}
+
+/* PRINCIPLES */
+.research-principles{background:var(--dark);padding:80px 0}
+.rp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;margin-top:56px}
+.rp-card{padding:36px 28px;background:var(--dark);transition:background 0.3s}
+.rp-card:hover{background:rgba(255,255,255,0.03)}
+.rp-num{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;color:rgba(191,172,164,0.5);font-family:var(--fh);margin-bottom:14px}
+.rp-title{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-0.2px}
+.rp-desc{font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.75}
+
+/* STATUS */
+.status-section{background:var(--cream2);border-top:1px solid var(--border)}
+.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.status-card{padding:32px;background:rgba(255,255,255,0.6);border:1px solid var(--border);border-radius:18px}
+.status-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.status-title{font-family:var(--fh);font-size:0.95rem;font-weight:700;color:var(--dark)}
+.status-badge{display:inline-flex;align-items:center;gap:6px;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;font-family:var(--fh);padding:3px 10px;border-radius:99px}
+.badge-active{background:rgba(45,187,93,0.1);color:#2dbb5d;border:1px solid rgba(45,187,93,0.2)}
+.badge-research{background:rgba(191,172,164,0.12);color:var(--beige);border:1px solid var(--border2)}
+.badge-planned{background:rgba(1,28,38,0.06);color:var(--gray);border:1px solid var(--border)}
+.status-dot-a{width:6px;height:6px;border-radius:50%;background:#2dbb5d;animation:blink 2s infinite}
+.status-dot-r{width:6px;height:6px;border-radius:50%;background:var(--beige)}
+.status-dot-p{width:6px;height:6px;border-radius:50%;background:var(--border2)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.status-desc{font-size:0.82rem;color:var(--gray);line-height:1.7}
+@media(max-width:640px){.status-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta-s{background:var(--cream);border-top:1px solid var(--border);padding:100px 0;text-align:center}
+.cta-inner{max-width:560px;margin:0 auto}
+.cta-eyebrow{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--beige);font-family:var(--fh);margin-bottom:20px}
+.cta-title{font-family:var(--fh);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-0.5px;color:var(--dark);margin-bottom:14px}
+.cta-sub{font-size:0.95rem;color:var(--gray);line-height:1.8;margin-bottom:36px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:48px 0 32px}
+.footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:32px;margin-bottom:40px}
+.footer-brand{font-family:var(--fh);font-size:0.85rem;font-weight:800;color:#fff;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.footer-desc{font-size:0.78rem;color:rgba(255,255,255,0.28);line-height:1.7;max-width:200px}
+.footer-col h4{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.22);margin-bottom:14px;font-family:var(--fh)}
+.footer-col a{display:block;font-size:0.78rem;color:rgba(255,255,255,0.38);margin-bottom:9px;transition:color 0.15s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">L</div>
+      LEXINODIX
+    </a>
+    <div class="nav-links">
+      <a href="labs.html" class="active">Labs</a>
+      <a href="infra.html">Infra</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@lexinodix.com">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://lexinodix-flow-4wzv.vercel.app/" class="nav-cta">Launch Flow →</a>
+      <button class="ham" id="ham" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-nav" id="mobNav">
+  <a href="labs.html">Labs</a>
+  <a href="infra.html">Infra</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="mailto:hello@lexinodix.com">Contact</a>
+  <a href="https://lexinodix-flow-4wzv.vercel.app/" class="mob-cta">Launch Flow →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-division reveal">Division I — Research & Engineering</div>
+        <h1 class="hero-h1 reveal d1">Where <em>intelligence</em><br>is engineered.</h1>
+        <p class="hero-sub reveal d2">Lexinodix Labs is the core research and architecture division. We don't consume AI — we design the systems that make AI smarter, faster, and Arabic-native.</p>
+        <div class="hero-actions reveal d3">
+          <a href="mailto:hello@lexinodix.com" class="btn-p">
+            Collaborate with Labs
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="products.html" class="btn-s">See Our Products</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <div class="labs-diagram">
+          <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="220" cy="220" r="200" stroke="rgba(191,172,164,0.15)" stroke-width="1" stroke-dasharray="4 8"/>
+            <!-- Mid ring -->
+            <circle cx="220" cy="220" r="140" stroke="rgba(191,172,164,0.2)" stroke-width="1"/>
+            <!-- Inner ring -->
+            <circle cx="220" cy="220" r="80" stroke="rgba(191,172,164,0.25)" stroke-width="1" stroke-dasharray="3 6"/>
+            <!-- Center -->
+            <rect x="196" y="196" width="48" height="48" rx="12" fill="#011C26"/>
+            <text x="220" y="227" text-anchor="middle" font-family="Sora,sans-serif" font-size="18" font-weight="800" fill="white">L</text>
+            <!-- Nodes outer -->
+            <circle cx="220" cy="20" r="6" fill="#BFACA4"/>
+            <circle cx="404" cy="283" r="5" fill="#BFACA4" opacity="0.6"/>
+            <circle cx="96" cy="352" r="4" fill="#BFACA4" opacity="0.4"/>
+            <circle cx="36" cy="156" r="5" fill="#BFACA4" opacity="0.5"/>
+            <!-- Nodes mid -->
+            <circle cx="220" cy="80" r="5" fill="#BFACA4" opacity="0.5"/>
+            <circle cx="340" cy="290" r="4" fill="#BFACA4" opacity="0.4"/>
+            <circle cx="100" cy="290" r="4" fill="#BFACA4" opacity="0.4"/>
+            <!-- Lines from center -->
+            <line x1="220" y1="196" x2="220" y2="86" stroke="rgba(191,172,164,0.2)" stroke-width="1"/>
+            <line x1="244" y1="220" x2="335" y2="287" stroke="rgba(191,172,164,0.15)" stroke-width="1"/>
+            <line x1="196" y1="220" x2="105" y2="287" stroke="rgba(191,172,164,0.15)" stroke-width="1"/>
+            <!-- Labels -->
+            <text x="220" y="68" text-anchor="middle" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="rgba(191,172,164,0.7)" letter-spacing="1">ARABIC NLP</text>
+            <text x="358" y="308" text-anchor="start" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="rgba(191,172,164,0.7)" letter-spacing="1">RAG</text>
+            <text x="62" y="308" text-anchor="end" font-family="Sora,sans-serif" font-size="9" font-weight="600" fill="rgba(191,172,164,0.7)" letter-spacing="1">MODELS</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section class="focus">
+  <div class="container">
+    <div class="sec-label reveal"><span class="sec-label-dot"></span> Research Focus Areas</div>
+    <h2 class="sec-title reveal d1">What we engineer.</h2>
+    <p class="sec-sub reveal d2">Labs works at the intersection of systems design, language intelligence, and infrastructure optimization.</p>
+
+    <div class="focus-grid">
+      <div class="focus-card reveal">
+        <div class="focus-num">AREA 01</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="focus-title">Arabic-Native NLP</div>
+        <div class="focus-desc">We build language models and pipelines that treat Arabic — including Egyptian dialect — as a first-class language. Not a translation layer. Native intelligence.</div>
+      </div>
+      <div class="focus-card reveal d1">
+        <div class="focus-num">AREA 02</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="focus-title">RAG Architecture</div>
+        <div class="focus-desc">Retrieval-Augmented Generation systems that connect large language models to real, private, organizational knowledge — securely and at scale.</div>
+      </div>
+      <div class="focus-card reveal d2">
+        <div class="focus-num">AREA 03</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="focus-title">Model Optimization</div>
+        <div class="focus-desc">Reducing inference cost and latency through quantization, distillation, and intelligent routing — making production AI economically viable at any scale.</div>
+      </div>
+      <div class="focus-card reveal d3">
+        <div class="focus-num">AREA 04</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="focus-title">Agent Systems</div>
+        <div class="focus-desc">Multi-agent AI architectures that can reason, plan, and execute complex workflows autonomously — the foundation for next-generation AI applications.</div>
+      </div>
+      <div class="focus-card reveal d4">
+        <div class="focus-num">AREA 05</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        </div>
+        <div class="focus-title">Document Intelligence</div>
+        <div class="focus-desc">Deep understanding of PDFs, contracts, reports, and structured documents — extracting meaning, not just text. Built for Arabic and English documents.</div>
+      </div>
+      <div class="focus-card reveal d4">
+        <div class="focus-num">AREA 06</div>
+        <div class="focus-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="focus-title">Privacy-Preserving AI</div>
+        <div class="focus-desc">AI systems designed from the ground up for data sovereignty — techniques that allow organizations to use intelligence without exposing sensitive information.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline">
+  <div class="container">
+    <div class="sec-label reveal"><span class="sec-label-dot"></span> Research Pipeline</div>
+    <h2 class="sec-title reveal d1">From concept to<br>production intelligence.</h2>
+    <p class="sec-sub reveal d2">Every system Labs builds follows a rigorous path from initial research to live deployment across our products.</p>
+
+    <div class="pipeline-visual">
+      <div class="pipe-steps">
+        <div class="pipe-step reveal">
+          <div class="pipe-step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="pipe-step-name">Research</div>
+          <div class="pipe-step-desc">Problem definition and state-of-the-art analysis</div>
+        </div>
+        <div class="pipe-step reveal d1">
+          <div class="pipe-step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+          </div>
+          <div class="pipe-step-name">Architecture</div>
+          <div class="pipe-step-desc">System design and technical specification</div>
+        </div>
+        <div class="pipe-step reveal d2">
+          <div class="pipe-step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+          </div>
+          <div class="pipe-step-name">Prototype</div>
+          <div class="pipe-step-desc">Rapid implementation and initial validation</div>
+        </div>
+        <div class="pipe-step reveal d3">
+          <div class="pipe-step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+          </div>
+          <div class="pipe-step-name">Evaluation</div>
+          <div class="pipe-step-desc">Benchmarking, testing, and quality assurance</div>
+        </div>
+        <div class="pipe-step reveal d4">
+          <div class="pipe-step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="pipe-step-name">Production</div>
+          <div class="pipe-step-desc">Live deployment in Lexinodix products</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH PRINCIPLES -->
+<section class="research-principles">
+  <div class="container">
+    <div class="sec-label reveal" style="color:rgba(255,255,255,0.3)"><span class="sec-label-dot"></span> Engineering Standards</div>
+    <h2 class="sec-title reveal d1" style="color:#fff">How Labs thinks<br>about research.</h2>
+    <div class="rp-grid">
+      <div class="rp-card reveal">
+        <div class="rp-num">STANDARD 01</div>
+        <div class="rp-title">Build, don't wrap</div>
+        <div class="rp-desc">We engineer systems from first principles. Using existing APIs is a starting point, not a final answer. The goal is always proprietary capability.</div>
+      </div>
+      <div class="rp-card reveal d1">
+        <div class="rp-num">STANDARD 02</div>
+        <div class="rp-title">Arabic is not optional</div>
+        <div class="rp-desc">Every research direction considers Arabic-language performance from day one. The Arab world is our primary market — its languages are our primary constraint.</div>
+      </div>
+      <div class="rp-card reveal d2">
+        <div class="rp-num">STANDARD 03</div>
+        <div class="rp-title">Production is the test</div>
+        <div class="rp-desc">Research that doesn't reach production has failed. Every Labs project has a clear path to deployment in a Lexinodix product or system.</div>
+      </div>
+      <div class="rp-card reveal d3">
+        <div class="rp-num">STANDARD 04</div>
+        <div class="rp-title">Security in the design</div>
+        <div class="rp-desc">Privacy and security are not reviewed after a system is built — they are designed into the architecture from the first whiteboard session.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section class="status-section">
+  <div class="container">
+    <div class="sec-label reveal"><span class="sec-label-dot"></span> Current Status</div>
+    <h2 class="sec-title reveal d1">What's in progress.</h2>
+    <div class="status-grid">
+      <div class="status-card reveal">
+        <div class="status-header">
+          <div class="status-title">Arabic Document Intelligence</div>
+          <span class="status-badge badge-active"><span class="status-dot-a"></span> Active</span>
+        </div>
+        <div class="status-desc">Core pipeline for extracting structured knowledge from Arabic and English documents — PDFs, contracts, and reports. Powering the next version of Lexinodix Flow.</div>
+      </div>
+      <div class="status-card reveal d1">
+        <div class="status-header">
+          <div class="status-title">Multi-Model Router</div>
+          <span class="status-badge badge-active"><span class="status-dot-a"></span> Active</span>
+        </div>
+        <div class="status-desc">Intelligent routing layer that directs AI requests to the optimal model based on task complexity, cost, and latency requirements. Foundation for Lexinodix Nexus.</div>
+      </div>
+      <div class="status-card reveal d2">
+        <div class="status-header">
+          <div class="status-title">Proprietary Embedding Model</div>
+          <span class="status-badge badge-research"><span class="status-dot-r"></span> Research</span>
+        </div>
+        <div class="status-desc">Arabic-optimized embedding model for semantic search and retrieval tasks. Designed to outperform general-purpose models on Arabic text understanding.</div>
+      </div>
+      <div class="status-card reveal d3">
+        <div class="status-header">
+          <div class="status-title">Agent Orchestration System</div>
+          <span class="status-badge badge-planned"><span class="status-dot-p"></span> Planned</span>
+        </div>
+        <div class="status-desc">Multi-agent framework for complex, multi-step AI workflows. Will enable Lexinodix products to autonomously complete research, analysis, and organizational tasks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-s">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-eyebrow reveal">Lexinodix Labs</div>
+      <h2 class="cta-title reveal d1">Interested in<br>our research?</h2>
+      <p class="cta-sub reveal d2">We collaborate with researchers, institutions, and engineers who share our belief that the Arab world deserves world-class AI infrastructure.</p>
+      <div class="cta-actions reveal d3">
+        <a href="mailto:hello@lexinodix.com" class="btn-p">
+          Contact Labs
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="index.html" class="btn-s">Back to Lexinodix</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Lexinodix</div>
+        <p class="footer-desc">Intelligent infrastructure for the Arab world and beyond.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Divisions</h4>
+        <a href="labs.html">Labs</a>
+        <a href="infra.html">Infra</a>
+        <a href="products.html">Products</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="mailto:hello@lexinodix.com">Contact</a>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="https://lexinodix-flow-4wzv.vercel.app/">Lexinodix Flow</a>
+        <a href="mailto:hello@lexinodix.com">Nexus Waitlist</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Lexinodix. Cairo, Egypt.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.pageYOffset>30)},{passive:true});
+  var ham=document.getElementById('ham'),mob=document.getElementById('mobNav');
+  ham.addEventListener('click',function(){var o=mob.classList.contains('open');mob.classList.toggle('open');ham.classList.toggle('open');document.body.style.overflow=o?'':'hidden'});
+  mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');ham.classList.remove('open');document.body.style.overflow=''})});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});reveals.forEach(function(el){obs.observe(el)})}else{reveals.forEach(function(el){el.classList.add('visible')})}
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}})});
+})();
+</script>
+</body>
+</html>
